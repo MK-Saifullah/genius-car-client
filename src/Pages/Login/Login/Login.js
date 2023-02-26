@@ -8,6 +8,8 @@ import {
   FaGoogle,
   FaGithubAlt,
 } from "react-icons/fa";
+import { setAuthToken } from "../../../api/authToken";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const { loginUser, googleUser } = useContext(AuthContext);
@@ -17,15 +19,35 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleGoogleSingIn = () => {
-    googleUser(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate(from, {replace:true})
-      })
-      .catch((err) => console.error(err));
-  };
+  // const handleGoogleSingIn = () => {
+  //   googleUser(googleProvider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //       setAuthToken(user)
+
+  //       // const currentUser = {
+  //       //   email: user.email
+  //       // };
+
+  //       // // Get jwt token
+  //       // fetch('https://genius-car-server-mk-saifullah.vercel.app/jwt', {
+  //       //   method: 'POST',
+  //       //   headers: {'content-type': 'application/json'},
+  //       //   body: JSON.stringify(currentUser)
+  //       // })
+  //       // .then(res => res.json())
+  //       // .then(data => {
+  //       //   console.log(data)
+  //       //   localStorage.setItem('genius-car-token', data.token)
+  //       // })
+
+  //       navigate(from, {replace:true})
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
+
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -35,20 +57,25 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         // console.log(user);
-        const currentUser = {email: user.email}
-        console.log('currentUser', currentUser);
-        // get jwt token
-        fetch('https://genius-car-server-mk-saifullah.vercel.app/jwt', {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify(currentUser)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          // LocalStorage
-          localStorage.setItem('genius-car-token', data.token)
-        })
+
+        setAuthToken(user)
+
+        // const currentUser = {email: user.email}
+        // console.log('currentUser', currentUser);
+        // // get jwt token
+        // fetch('https://genius-car-server-mk-saifullah.vercel.app/jwt', {
+        //   method: 'POST',
+        //   headers: {'content-type': 'application/json'},
+        //   body: JSON.stringify(currentUser)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //   console.log(data)
+        //   // LocalStorage
+        //   localStorage.setItem('genius-car-token', data.token)
+        // })
+        
+        
         navigate(from, {replace: true})
         form.reset();
       })
@@ -112,22 +139,22 @@ const Login = () => {
           </p>
 
           <h2 className="text-center">
-            Sign In with
-            <button
+            Sign In with <SocialLogin />
+           
+            {/* <button
               onClick={handleGoogleSingIn}
               className="btn btn-outline btn-primary ml-2 mr-2"
             >
               <FaGoogle></FaGoogle>Google
-            </button>
-            <button
+            </button> */}
+            
+            {/* <button
               onClick={handleGithubSingIn}
               className="btn btn-outline btn-primary"
             >
               <FaGithubAlt></FaGithubAlt>GitHub
-            </button>
-            {/* <Button onClick={handleGoogleSingIn} className='mb-2'  variant="outline-info"><FaGoogle></FaGoogle> Login with Google</Button> */}
-            {/* <br></br> */}
-            {/* <Button  variant="outline-info"><FaGithub></FaGithub> Login with Github</Button> */}
+            </button> */}
+            
           </h2>
         </div>
       </div>
