@@ -1,4 +1,4 @@
-import { success } from "daisyui/src/colors";
+// import { success } from "daisyui/src/colors";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import OrderRow from "./OrderRow";
@@ -9,7 +9,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`https://genius-car-server-mk-saifullah.vercel.app/orders?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('genius-car-token')}`
       }
@@ -30,7 +30,7 @@ const Orders = () => {
     const proceed = window.confirm('Are you sure you want to delete?')
     // console.log(proceed)
     if(proceed) {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://genius-car-server-mk-saifullah.vercel.app/orders/${id}`, {
             method: 'DELETE',
               headers: {
                 authorization: `Bearer ${localStorage.getItem('genius-car-token')}`
@@ -49,7 +49,7 @@ const Orders = () => {
 }
 
 const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://genius-car-server-mk-saifullah.vercel.app/orders/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json',

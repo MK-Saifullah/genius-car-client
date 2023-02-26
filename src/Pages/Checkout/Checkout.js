@@ -33,7 +33,7 @@ const Checkout = () => {
             alert ('Your phone number must be at least more than 9 characters long')
         }
         else {
-            fetch('http://localhost:5000/orders', {
+            fetch('https://genius-car-server-mk-saifullah.vercel.app/orders', {
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json',

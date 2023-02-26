@@ -6,12 +6,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import {
   FaGoogle,
-  FaGithub,
-  FaFacebook,
   FaGithubAlt,
-  FaTwitch,
-  FaWhatsapp,
-  FaYoutube,
 } from "react-icons/fa";
 
 const Login = () => {
@@ -43,7 +38,7 @@ const Login = () => {
         const currentUser = {email: user.email}
         console.log('currentUser', currentUser);
         // get jwt token
-        fetch('http://localhost:5000/jwt', {
+        fetch('https://genius-car-server-mk-saifullah.vercel.app/jwt', {
           method: 'POST',
           headers: {'content-type': 'application/json'},
           body: JSON.stringify(currentUser)
@@ -59,6 +54,10 @@ const Login = () => {
       })
       .catch((error) => console.error(error));
   };
+
+  const handleGithubSingIn = () => {
+    console.log('githubSingIn is under construction')
+  }
   return (
     <div className="hero w-full">
       <div className="hero-content flex-col lg:flex-row">
@@ -90,7 +89,7 @@ const Login = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover" >
+                <a href="/login" className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
               </label>
@@ -121,7 +120,7 @@ const Login = () => {
               <FaGoogle></FaGoogle>Google
             </button>
             <button
-              onClick={handleGoogleSingIn}
+              onClick={handleGithubSingIn}
               className="btn btn-outline btn-primary"
             >
               <FaGithubAlt></FaGithubAlt>GitHub

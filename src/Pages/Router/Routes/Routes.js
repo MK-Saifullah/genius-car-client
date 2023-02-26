@@ -28,13 +28,13 @@ const router = createBrowserRouter([
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({params})=> fetch(`https://genius-car-server-mk-saifullah.vercel.app/services/${params.id}`)
             },
             {
                 path: '/orders',
                 element: <PrivateRoute><Orders></Orders></PrivateRoute>,
                 // element: <Orders></Orders>,
-                // loader: ({params})=> fetch(`http://localhost:5000/orders/${params.id}`)
+                // loader: ({params})=> fetch(`https://genius-car-server-mk-saifullah.vercel.app/orders/${params.id}`)
             }
         ]
     }
