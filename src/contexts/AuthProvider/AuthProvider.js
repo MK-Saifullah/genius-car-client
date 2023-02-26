@@ -12,21 +12,24 @@ const AuthProvider = ({children}) => {
     //User email and password
     
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
     
     //Login user
     const loginUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     
     // Logout user
     const logOutUser = (email, password) => {
+        localStorage.removeItem('genius-car-token')
         return signOut(auth, email, password)
     }
     
     // google user
-    const googleProvider = new GoogleAuthProvider();
+    // const googleProvider = new GoogleAuthProvider();
     const googleUser = (googleProvider) => {
         return signInWithPopup(auth, googleProvider)
     }
@@ -37,7 +40,9 @@ const AuthProvider = ({children}) => {
             setUser(currentUser)
             setLoading(false);
         })
-        return () => unSubscribe();
+        return () => {
+            return unSubscribe()
+        };
     }, [])
 
     const authInfo = {

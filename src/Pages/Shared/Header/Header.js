@@ -19,7 +19,7 @@ const Header = () => {
         {/* <li className='font-semibold'><Link to='/login'>Login</Link></li> */}
         <li className='font-semibold'>
           {
-            user?.uid? 
+            user?.email? 
             <>
               {/* <span className='text-bold'>{user.displayName}</span> */}
               <button onClick = {handleLogout} className="btn btn-warning">Log Out</button> <span className=''>User: {user?.email}</span>
@@ -27,7 +27,7 @@ const Header = () => {
             :
             <>
               <Link to="/login"> Login</Link>
-              <Link to="/signup"> Register</Link>
+              <Link to="/signup"> Sign Up</Link>
             </>
           }
         </li>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+// import { useLoaderData } from 'react-router-dom';
 
-const OrderRow = ({order}) => {
-    const {serviceName, price, customer, email, phone, service } = order;
+const OrderRow = ({order, handleDelete, handleStatusUpdate}) => {
+    // const {id} = useLoaderData()
+    const {_id, serviceName, price, customer, email, phone, service, status } = order;
     const [orderService, setOrderService] = useState({})
 
 
@@ -11,11 +13,13 @@ const OrderRow = ({order}) => {
         .then(data => setOrderService(data))
     }, [service])
 
+
+
     return (
         <tr>
         <th>
           <label>
-            <button className="btn btn-ghost">X</button>
+            <button onClick={() => handleDelete(_id)} className="btn btn-ghost">X</button>
           </label>
         </th>
         <td>
@@ -46,7 +50,7 @@ const OrderRow = ({order}) => {
         </td>
         <td>Purple</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+          <button onClick={() => handleStatusUpdate(_id)} className="btn btn-ghost btn-xs">{status ? status : 'pending'}</button>
         </th>
       </tr>
     );
