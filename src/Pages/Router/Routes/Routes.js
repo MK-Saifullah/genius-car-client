@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/orders',
-                element: <PrivateRoute><Orders></Orders></PrivateRoute>,
+                element: <Orders></Orders>,
                 // element: <Orders></Orders>,
                 // loader: ({params})=> fetch(`https://genius-car-server-mk-saifullah.vercel.app/orders/${params.id}`)
             }

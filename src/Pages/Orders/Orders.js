@@ -73,7 +73,7 @@ const handleStatusUpdate = (id) => {
 
   return (
     <div>
-      <h2 className="text-5xl mb-2">You have {orders.length} orders </h2>
+      <h2 className="text-5xl mb-2">You have {orders?.length} orders </h2>
     
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -92,7 +92,7 @@ const handleStatusUpdate = (id) => {
           </thead>
           <tbody>
             {
-                orders.map(order => <OrderRow
+                orders?.map(order => <OrderRow
                     key = {order._id}
                     order = {order}
                     handleDelete = {handleDelete}
